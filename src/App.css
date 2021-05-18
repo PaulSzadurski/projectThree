@@ -1,38 +1,113 @@
-.App {
-  text-align: center;
+body {
+  color: white;
+  background-image: url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80");
+  background-position: center;
+  background-size: cover;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  font-size: 80px;
+  text-transform: uppercase;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+form {
+  background-color: rgb(77, 77, 77);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 90%;
+}
+
+.listFlex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+ul {
+  padding: 0;
+}
+
+.listFlex li {
+  background-color: rgba(77, 77, 77, 0.4);
+  width: 49%;
+  border: solid 2px black;
+  margin: 20px 0;
+  list-style: none;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.score {
+  font-weight: bold;
+}
+
+li p {
+  padding: 0 20px;
+}
+
+textarea {
+  padding: 0;
+  margin: 0;
+}
+
+label, textarea, input, h2 {
+  margin: 0 20px;
+}
+
+textarea, input {
+  background-color: black;
   color: white;
+  border: solid 3px rgb(136, 136, 145);
+  margin-bottom: 15px;
 }
 
-.App-link {
-  color: #61dafb;
+input[type=number] {
+  max-width: 100px;
+  -moz-appearance: textfield;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h2 {
+  margin-bottom: 20px;
+}
+
+form button {
+  max-width: 160px;
+  margin: 10px auto;
+  font-size: 25px;
+  border-radius: 30%;
+  color: white;
+  background-color: rgb(44, 43, 43);
+  border: solid black;
+  transition: background-color 0.5s ease;
+}
+
+form button:hover {
+  background-color: rgb(101, 101, 121);
+  cursor: pointer;
+}
+
+li div {
+  display: flex;
+  justify-content: space-between;
+}
+
+li button {
+  margin: auto 25px auto 0;
+  background-color: rgb(44, 43, 43);
+  color: white;
+  padding: 10px;
+  border: solid 2px black;
+  transition: background-color 0.5s ease;
+}
+
+li button:hover {
+  background-color: crimson;
+  cursor: pointer;
 }
