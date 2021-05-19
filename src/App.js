@@ -75,7 +75,7 @@ function App() {
   return (
     <div className="wrapper">
         <nav>
-          <label for="about" tabIndex="0">About</label>
+          <label htmlFor="about" tabIndex="0">About</label>
           <input type="checkbox" name="about" id="about"></input>
           <div className="about">
             <h2>About MOOvies</h2>
@@ -97,7 +97,6 @@ function App() {
 
           <label htmlFor="reviewScore">Score out of 10: </label>
           <input required type="number" id="reviewScore" max={10} min={1} onChange={(event) => setScore(event.target.value)} value={score} required></input>
-
           <button>Publish Review</button>
         </form>
         <ul className="listFlex">
