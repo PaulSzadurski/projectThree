@@ -96,7 +96,7 @@ function App() {
           <textarea required id="reviewText" onChange={(event) => setText(event.target.value)} value={text}></textarea>
 
           <label htmlFor="reviewScore">Score out of 10: </label>
-          <input required type="number" id="reviewScore" max={10} min={1} onChange={(event) => setScore(event.target.value)} value={score} required></input>
+          <input required type="number" id="reviewScore" max={10} min={1} onChange={(event) => setScore(event.target.value)} value={score} ></input>
           <button>Publish Review</button>
         </form>
         <ul className="listFlex">
