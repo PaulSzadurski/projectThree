@@ -7,8 +7,9 @@ const Return = () => {
     scroll.scrollToTop();
   }
 
+  // onClick calls a function which scrolls to the top of the page
   return (
-    <button onClick = { returnToTop } className = "return" tabIndex = "0" > Write Another Review</button >
+    <button onClick = { returnToTop } className = "return" > Write Another Review</button >
   )
 }
 
