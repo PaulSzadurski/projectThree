@@ -9,7 +9,7 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 
 *, *:before, *:after {box-sizing: inherit}
 
-.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
+.srOnly { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
 /* styling here */
 
@@ -20,31 +20,52 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 }
 
 /* typography */
-
 /* google fonts import */
 @import url('https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Montserrat:wght@400;700&display=swap');
+
+html {
+  font-size: 125%;
+}
 
 body {
   color: white;
   background-image: url(assets/background.jpg);
   background-size: cover;
   font-family: 'Montserrat', sans-serif;
-  background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-h1, h2, h3 {
-  font-family: 'Cardo', serif;
+a,
+button,
+textarea,
+input {
+  color: white;
 }
 
 
+h1, 
+h2, 
+h3 {
+  font-family: 'Cardo', serif;
+}
+
+h1,
+.listFlex li,
+form,
+footer {
+  border: solid 0.1rem black;
+}
+
+button {
+  font-family: 'Montserrat', sans-serif;
+}
+
 h1 {
-  font-size: 80px;
-  padding-left: 20px;
+  font-size: 4rem;
+  padding-left: 1rem;
   background-color: rgba(77, 77, 77, 0.726);
-  border: solid 2px black;
-  margin: 70px 0 40px 0;
+  margin: 3.5rem 0 2rem 0;
   text-align: center;
   text-transform: uppercase;
 }
@@ -56,38 +77,37 @@ ul {
 .listFlex li {
   background-color: rgba(77, 77, 77, 0.726);
   width: 49%;
-  border: solid 2px black;
-  margin: 20px 0;
+  margin: 1rem 0;
   list-style: none;
 }
 
-.title {
-  font-size: 30px;
-  font-weight: bold;
+h3, 
+.score, 
+a, 
+header button {
+    font-weight: bold;
 }
 
-.score {
-  font-weight: bold;
+h3 {
+  font-size: 1.5rem;
 }
 
 h3,
 li p {
-  padding: 0 20px;
+  padding: 0 1rem;
 }
 
 label, textarea, input, h2 {
-  margin: 0 20px;
+  margin: 0 1rem;
 }
 
 h2 {
-  margin-bottom: 20px;
-  font-size: 40px;
+  margin-bottom: 1rem;
+  font-size: 2rem;
 }
 
 a {
   text-decoration: none;
-  color: white;
-  font-weight: bold;
 }
 
 /* header */
@@ -99,10 +119,7 @@ header button {
   margin: 0;
   top: 0;
   right: 5%;
-  font-weight: bold;
-  color: white;
-  border: solid 1px gold;
-  font-family: 'Montserrat', sans-serif;
+  border: solid 0.05rem gold;
 }
 
 header button:hover,
@@ -116,7 +133,6 @@ form {
   background-color: rgb(77, 77, 77);
   display: flex;
   flex-direction: column;
-  border: solid 2px black;
 }
 
 form h2 {
@@ -125,37 +141,36 @@ form h2 {
 
 textarea {
   padding: 0;
-  margin: 0 20px;
-  height: 150px;
+  margin: 0 1rem;
+  height: 7.5rem;
   resize: none;
 }
 
 form button {
-  max-width: 160px;
-  margin: 10px auto;
-  font-size: 25px;
+  max-width: 8rem;
+  margin: 0.5rem auto;
+  font-size: 1.25rem;
   border-radius: 30%;
-  color: white;
   background-color: rgb(44, 43, 43);
   border: solid black;
-  transition: background-color 0.5s ease;
 }
 
 form button:hover,
 form button:focus {
   background-color: rgb(101, 101, 121);
+  transition: background-color 0.5s ease;
   cursor: pointer;
 }
 
-textarea, input {
+textarea, 
+input {
   background-color: black;
-  color: white;
   border: solid 3px rgb(136, 136, 145);
-  margin-bottom: 15px;
+  margin-bottom: 0.75rem;
 }
 
 input[type=number] {
-  max-width: 100px;
+  max-width: 5rem;
   -moz-appearance: textfield;
 }
 
@@ -172,10 +187,9 @@ li div {
 }
 
 li button {
-  margin: auto 25px auto 0;
+  margin: auto 1.25rem auto 0;
   background-color: rgb(44, 43, 43);
-  color: white;
-  padding: 15px;
+  padding: 0.75rem;
   border: solid 2px black;
   transition: background-color 0.5s ease;
 }
@@ -183,8 +197,8 @@ li button {
 .reviewBoard h2 {
   background-color: rgba(53, 53, 53, 0.856);
   text-align: center;
-  margin: 20px 0 20px 0;
-  padding: 20px 0;
+  margin: 1rem 0 1rem 0;
+  padding: 1rem 0;
   border: solid 2px black;
 }
 
@@ -197,13 +211,11 @@ li button:focus {
 /* footer + return */
 .return {
   background-color: black;
-  padding: 20px;
+  padding: 1rem;
   text-align: center;
-  font-size: 20px;
-  border: solid 1px gold;
+  border: solid 0.05rem gold;
   width: 100%;
-  color: white;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
 }
 
 .return:hover,
@@ -214,12 +226,11 @@ li button:focus {
 }
 
 footer p {
-  padding-left: 20px;
+  padding-left: 1rem;
 }
 
 footer {
   background-color: rgb(77, 77, 77);
-  border: solid 2px black;
 }
 
 /* media queries */
@@ -231,44 +242,31 @@ footer {
 
 @media (max-width: 767px) {
   h1 {
-    font-size: 60px;
+    font-size: 3rem;
   }
 }
 
 @media (max-width: 583px) {
   h1 {
-    font-size: 40px;
+    font-size: 1.75rem;
+    padding: 0;
   }
 
   h2 {
-    font-size: 30px;
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  header button {
+    padding: 0.5rem;
   }
 }
 
 @media (max-width: 563px) {
   .wrapper {
     max-width: 95%;
-  }
-
-  nav label {
-    right: 0;
-    padding-right: 5px;
-    padding-left: 5px;
-  }
-
-  .about {
-    width: 80%;
-    left: 0;
-  }
-
-  .about p {
-    text-align: left;
-  }
-}
-
-@media (max-width: 583px) {
-  h1 {
-    font-size: 35px;
-    padding: 0;
   }
 }

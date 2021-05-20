@@ -7,7 +7,6 @@ import Header from './Header';
 import Footer from './Footer';
 import Return from './Return';
 
-
 function App() {
 
   const [movies, setMovies] = useState([]);
@@ -96,14 +95,14 @@ function App() {
         <form action="submit" onSubmit={handleClick}>
           <h2>Film Review Form</h2>
           <label htmlFor="reviewTitle">Film Name: </label>
-          <input required type="text" id="reviewTitle" onChange={(event) => setTitle(event.target.value)} value={title}></input>
+          <input required aria-required="true" type="text" id="reviewTitle" onChange={(event) => setTitle(event.target.value)} value={title}></input>
 
           <label htmlFor="reviewText">Write Review Here:</label>
-          <textarea required id="reviewText" onChange={(event) => setText(event.target.value)} value={text}></textarea>
+          <textarea required aria-required="true" id="reviewText" onChange={(event) => setText(event.target.value)} value={text}></textarea>
 
           <label htmlFor="reviewScore">Score out of 10: </label>
-          <input required type="number" id="reviewScore" max={10} min={1} onChange={(event) => setScore(event.target.value)} value={score} ></input>
-          <button>Publish Review</button>
+          <input required aria-required="true" type="number" id="reviewScore" max={10} min={1} onChange={(event) => setScore(event.target.value)} value={score} ></input>
+          <button>Submit Review</button>
         </form>
 
         <div className="reviewBoard">
@@ -115,7 +114,7 @@ function App() {
                 
                 <li key={movie.key}>
                   <div>
-                    <h3 className="title">{movie.name.title}</h3>
+                    <h3>{movie.name.title}</h3>
                     <button onClick={() => removeReview(movie.key)}>Remove</button>
                   </div>
                   <p className="text">{movie.name.text}</p>
