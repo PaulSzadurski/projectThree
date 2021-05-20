@@ -2,17 +2,9 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import firebase from './firebase';
 import { animateScroll as scroll } from 'react-scroll'
+import Swal from 'sweetalert2'
 
 function App() {
-
-
-  // fetch(url).then((response) => {
-  //   return response.json();
-  // }).then((jsonResponse) => {
-  //   console.log(jsonResponse.results[0].original_title);
-  // });
-
-
 
   const [movies, setMovies] = useState([]);
 
@@ -72,11 +64,35 @@ function App() {
   const removeReview = (reviewID) => {
     const movieRef = firebase.database().ref();
 
-    movieRef.child(reviewID).remove();
+    Swal.fire({
+      title: 'Remove Review',
+      text: 'Are you sure you want to remove this?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No',
+      confirmButtonColor: "#325ca8",
+      cancelButtonColor: "#f25050"
+    }).then((result) => {
+      if (result.isConfirmed) {
+      Swal.fire(
+        'Removed'
+        )
+        movieRef.child(reviewID).remove();
+    } 
+  })
   }
 
   const returnToTop = () => {
     scroll.scrollToTop();
+  }
+
+  const about = () => {
+    Swal.fire({
+      icon: 'info',
+      title: 'About MOOvies',
+      text: 'Hello there! Welcome to my anonymous movie review board made using react.js and firebase! The app is fairly straightforward, go to the review form and write up a review of a film you love (or hate) following the parameters. Once you submit the review, it will be sent to a firebase database and then pushed onto the review board you see beneath the form'
+    })
   }
 
   // console.log('movies: ', movies);
@@ -89,13 +105,13 @@ function App() {
 
 
         <nav>
-          <label htmlFor="about" tabIndex="0">About</label>
+          <label htmlFor="about" tabIndex="0" onClick={about}>About</label>
           <input type="checkbox" name="about" id="about"></input>
-          <div className="about">
+          {/* <div className="about">
             <h2>About MOOvies</h2>
             <p>Hello there! Welcome to my anonymous movie review board made using react.js and firebase! The app is fairly straightforward, go to the review form and write up a review of a film you love (or hate) following the parameters. Once you submit the review, it will be sent to a firebase database and then pushed onto the review board you see beneath the form.</p>
             <p>Click "About" again to remove this information.</p>
-          </div>
+          </div> */}
         </nav>
       <header>
         <h1>MOOvies 🐄 🐄 🐄</h1>
@@ -136,7 +152,7 @@ function App() {
       </main>
       <footer>
         <p>Created by Paul Szadurski at <a href="https://junocollege.com/">Juno College</a></p>
-        <p>Background image created by <a href="https://unsplash.com/@myke_simon">Myke Simon</a></p>
+        <p>Background image created by <a href="https://unsplash.com/@jonatanmoerman">Jonatan Moerman</a></p>
       </footer>
     </div>
   );
