@@ -1,46 +1,21 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import firebase from './firebase';
-import { animateScroll as scroll } from 'react-scroll'
-import Swal from 'sweetalert2'
+import { animateScroll as scroll } from 'react-scroll';
+import Swal from 'sweetalert2';
+import Header from './Header';
+import Footer from './Footer';
+import Return from './Return';
+
 
 function App() {
 
   const [movies, setMovies] = useState([]);
-
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
   const [score, setScore] = useState('');
 
-
-  const handleClick = (event) => {
-    event.preventDefault();
-
-    // if (title == '') {
-    //   alert('Please enter a title!')
-    // } else if (text == '') {
-    //   alert('Please write a review!')
-    // } 
-
-    const movieRef = firebase.database().ref()
-
-    const addReview = movieRef;
-
-
-    addReview.push({
-      title: title,
-      text: text,
-      score: score,
-    })
-
-    setTitle('');
-    setText('');
-    setScore('');
-
-    scroll.scrollToBottom();
-
-  }
-
+  // pulls data from firebase and places into an array
   useEffect(() => {
 
     const movieRef = firebase.database().ref();
@@ -48,71 +23,78 @@ function App() {
     movieRef.on('value', (response) => {
 
       const reviews = response.val();
-      
+
       const newState = [];
-      
+
       for (let key in reviews) {
-        newState.push({key: key, name: reviews[key]});
-        // console.log("test: ", key);
+        newState.push({ key: key, name: reviews[key] });
       }
       setMovies(newState);
 
-      // const data = response.val(); 
     })
   }, []);
 
+  // event handler function which occurs once a review is submitted, adds the review to firebase and then it is pushed onto the page
+  const handleClick = (event) => {
+    event.preventDefault();
+
+    const movieRef = firebase.database().ref()
+
+    const addReview = movieRef;
+
+    addReview.push({
+      title: title,
+      text: text,
+      score: score,
+    })
+
+    // form input fields are cleared upon submission
+    setTitle('');
+    setText('');
+    setScore('');
+
+    scroll.scrollToBottom();
+  }
+
+  // event handler function which occurs if the "remove" button is clicked on a review
   const removeReview = (reviewID) => {
     const movieRef = firebase.database().ref();
 
+    // SweetAlert2 popup
     Swal.fire({
       title: 'Remove Review',
       text: 'Are you sure you want to remove this?',
-      icon: 'warning',
+      icon: 'question',
       showCancelButton: true,
       confirmButtonText: 'Yes',
       cancelButtonText: 'No',
       confirmButtonColor: "#325ca8",
       cancelButtonColor: "#f25050",
       background: '#fc9d9d',
-      iconColor: 'black'
+      iconColor: 'black',
     }).then((result) => {
       if (result.isConfirmed) {
-      Swal.fire(
-        {
+      Swal.fire({
           text: 'Removed',
           background: '#fc9d9d',
-          confirmButtonColor: "#325ca8"
-        }
-        )
+          confirmButtonColor: "#325ca8",
+        })
+        // review is removed from firebase + from the review board
         movieRef.child(reviewID).remove();
     } 
   })
   }
 
-  const returnToTop = () => {
-    scroll.scrollToTop();
-  }
-
-  const about = () => {
-    Swal.fire({
-      icon: 'info',
-      title: 'About MOOvies',
-      text: 'Hello there! Welcome to my anonymous movie review board made using react.js and firebase! The app is fairly straightforward, go to the review form and write up a review of a film you love (or hate) following the parameters. Once you submit the review, it will be sent to a firebase database and then pushed onto the review board you see beneath the form.',
-      background: '#fceaae',
-      iconColor: 'black',
-      confirmButtonColor: '#424242'
-    })
-  }
-
+  // html content
   return (
     <div className="wrapper">
-      <header>
-        <h1>MOOvies 🐄 🐄 🐄</h1>
-        <button onClick={about} tabIndex="1">About</button>
-      </header>
+      <Header />
+
       <main>
+        {/* form to submit a review to firebase + webpage */}
+        {/* onChanges at each input allows respective values to change based on user inputs */}
         <form action="submit" onSubmit={handleClick}>
-          <h2>Anonymous Film Review Form</h2>
+          <h2>Film Review Form</h2>
           <label htmlFor="reviewTitle">Film Name: </label>
           <input required type="text" id="reviewTitle" onChange={(event) => setTitle(event.target.value)} value={title}></input>
 
@@ -124,30 +106,28 @@ function App() {
           <button>Publish Review</button>
         </form>
 
-      <div className="reviewBoard">
-        <h2>Reviews</h2>
-        <ul className="listFlex">
-          {movies.map((movie) => {
-            return (
-              
-              <li key={movie.key}>
-                <div>
-                  <h3 className="title">{movie.name.title}</h3>
-                  <button onClick={() => removeReview(movie.key)}>Remove</button>
-                </div>
-                <p className="text">{movie.name.text}</p>
-                <p className="score">{movie.name.score}/10</p>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-      <p onClick={returnToTop} className="return" tabIndex="0">Return to top</p>
+        <div className="reviewBoard">
+          <h2>Reviews</h2>
+          <ul className="listFlex">
+            {/* reviews from firebase are mapped out onto the review board */}
+            {movies.map((movie) => {
+              return (
+                
+                <li key={movie.key}>
+                  <div>
+                    <h3 className="title">{movie.name.title}</h3>
+                    <button onClick={() => removeReview(movie.key)}>Remove</button>
+                  </div>
+                  <p className="text">{movie.name.text}</p>
+                  <p className="score">{movie.name.score}/10</p>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+        <Return />
       </main>
-      <footer>
-        <p>Created by Paul Szadurski at <a href="https://junocollege.com/">Juno College</a></p>
-        <p>Background image created by <a href="https://unsplash.com/@jonatanmoerman">Jonatan Moerman</a></p>
-      </footer>
+      <Footer />
     </div>
   );
 }
