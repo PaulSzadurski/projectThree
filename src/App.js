@@ -96,7 +96,7 @@ function App() {
   const about = () => {
     Swal.fire({
       icon: 'info',
-      title: 'About MOOvies',
+      title: 'About Anonymovies',
       text: 'Hello there! Welcome to my anonymous movie review board made using react.js and firebase! The app is fairly straightforward, go to the review form and write up a review of a film you love (or hate) following the parameters. Once you submit the review, it will be sent to a firebase database and then pushed onto the review board you see beneath the form.',
       background: '#fceaae',
       iconColor: 'black',
@@ -107,12 +107,12 @@ function App() {
   return (
     <div className="wrapper">
       <header>
-        <h1>MOOvies 🐄 🐄 🐄</h1>
+        <h1>Anonymovies</h1>
         <button onClick={about} tabIndex="1">About</button>
       </header>
       <main>
         <form action="submit" onSubmit={handleClick}>
-          <h2>Anonymous Film Review Form</h2>
+          <h2>Film Review Form</h2>
           <label htmlFor="reviewTitle">Film Name: </label>
           <input required type="text" id="reviewTitle" onChange={(event) => setTitle(event.target.value)} value={title}></input>
 
@@ -142,7 +142,7 @@ function App() {
           })}
         </ul>
       </div>
-      <p onClick={returnToTop} className="return" tabIndex="0">Return to top</p>
+      <button onClick={returnToTop} className="return" tabIndex="0">Return to Top</button>
       </main>
       <footer>
         <p>Created by Paul Szadurski at <a href="https://junocollege.com/">Juno College</a></p>
