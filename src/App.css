@@ -232,7 +232,6 @@ footer {
 @media (max-width: 767px) {
   h1 {
     font-size: 60px;
-    text-align: left;
   }
 }
 
@@ -241,7 +240,7 @@ footer {
     font-size: 40px;
   }
 
-  h3 {
+  h2 {
     font-size: 30px;
   }
 }

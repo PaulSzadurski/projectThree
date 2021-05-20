@@ -1,13 +1,16 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import firebase from './firebase';
-import { animateScroll as scroll } from 'react-scroll'
-import Swal from 'sweetalert2'
+import { animateScroll as scroll } from 'react-scroll';
+import Swal from 'sweetalert2';
+import Header from './Header';
+import Footer from './Footer';
+import Return from './Return';
+
 
 function App() {
 
   const [movies, setMovies] = useState([]);
-
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
   const [score, setScore] = useState('');
@@ -16,16 +19,9 @@ function App() {
   const handleClick = (event) => {
     event.preventDefault();
 
-    // if (title == '') {
-    //   alert('Please enter a title!')
-    // } else if (text == '') {
-    //   alert('Please write a review!')
-    // } 
-
     const movieRef = firebase.database().ref()
 
     const addReview = movieRef;
-
 
     addReview.push({
       title: title,
@@ -67,21 +63,23 @@ function App() {
     Swal.fire({
       title: 'Remove Review',
       text: 'Are you sure you want to remove this?',
-      icon: 'warning',
+      icon: 'question',
       showCancelButton: true,
       confirmButtonText: 'Yes',
       cancelButtonText: 'No',
       confirmButtonColor: "#325ca8",
       cancelButtonColor: "#f25050",
       background: '#fc9d9d',
-      iconColor: 'black'
+      iconColor: 'black',
+
     }).then((result) => {
       if (result.isConfirmed) {
       Swal.fire(
         {
           text: 'Removed',
           background: '#fc9d9d',
-          confirmButtonColor: "#325ca8"
+          confirmButtonColor: "#325ca8",
+
         }
         )
         movieRef.child(reviewID).remove();
@@ -89,27 +87,10 @@ function App() {
   })
   }
 
-  const returnToTop = () => {
-    scroll.scrollToTop();
-  }
-
-  const about = () => {
-    Swal.fire({
-      icon: 'info',
-      title: 'About Anonymovies',
-      text: 'Hello there! Welcome to my anonymous movie review board made using react.js and firebase! The app is fairly straightforward, go to the review form and write up a review of a film you love (or hate) following the parameters. Once you submit the review, it will be sent to a firebase database and then pushed onto the review board you see beneath the form.',
-      background: '#fceaae',
-      iconColor: 'black',
-      confirmButtonColor: '#424242'
-    })
-  }
-
   return (
     <div className="wrapper">
-      <header>
-        <h1>Anonymovies</h1>
-        <button onClick={about} tabIndex="1">About</button>
-      </header>
+      <Header />
+
       <main>
         <form action="submit" onSubmit={handleClick}>
           <h2>Film Review Form</h2>
@@ -142,12 +123,9 @@ function App() {
           })}
         </ul>
       </div>
-      <button onClick={returnToTop} className="return" tabIndex="0">Return to Top</button>
+      <Return />
       </main>
-      <footer>
-        <p>Created by Paul Szadurski at <a href="https://junocollege.com/">Juno College</a></p>
-        <p>Background image created by <a href="https://unsplash.com/@jonatanmoerman">Jonatan Moerman</a></p>
-      </footer>
+      <Footer />
     </div>
   );
 }
