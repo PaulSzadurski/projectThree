@@ -72,11 +72,17 @@ function App() {
       confirmButtonText: 'Yes',
       cancelButtonText: 'No',
       confirmButtonColor: "#325ca8",
-      cancelButtonColor: "#f25050"
+      cancelButtonColor: "#f25050",
+      background: '#fc9d9d',
+      iconColor: 'black'
     }).then((result) => {
       if (result.isConfirmed) {
       Swal.fire(
-        'Removed'
+        {
+          text: 'Removed',
+          background: '#fc9d9d',
+          confirmButtonColor: "#325ca8"
+        }
         )
         movieRef.child(reviewID).remove();
     } 
@@ -91,34 +97,22 @@ function App() {
     Swal.fire({
       icon: 'info',
       title: 'About MOOvies',
-      text: 'Hello there! Welcome to my anonymous movie review board made using react.js and firebase! The app is fairly straightforward, go to the review form and write up a review of a film you love (or hate) following the parameters. Once you submit the review, it will be sent to a firebase database and then pushed onto the review board you see beneath the form'
+      text: 'Hello there! Welcome to my anonymous movie review board made using react.js and firebase! The app is fairly straightforward, go to the review form and write up a review of a film you love (or hate) following the parameters. Once you submit the review, it will be sent to a firebase database and then pushed onto the review board you see beneath the form.',
+      background: '#fceaae',
+      iconColor: 'black',
+      confirmButtonColor: '#424242'
     })
   }
 
-  // console.log('movies: ', movies);
-
   return (
     <div className="wrapper">
-        {/* <div className="modal" id="modal">
-          <p>Are you sure you want to delete this?</p>
-        </div> */}
-
-
-        <nav>
-          <label htmlFor="about" tabIndex="0" onClick={about}>About</label>
-          <input type="checkbox" name="about" id="about"></input>
-          {/* <div className="about">
-            <h2>About MOOvies</h2>
-            <p>Hello there! Welcome to my anonymous movie review board made using react.js and firebase! The app is fairly straightforward, go to the review form and write up a review of a film you love (or hate) following the parameters. Once you submit the review, it will be sent to a firebase database and then pushed onto the review board you see beneath the form.</p>
-            <p>Click "About" again to remove this information.</p>
-          </div> */}
-        </nav>
       <header>
         <h1>MOOvies 🐄 🐄 🐄</h1>
+        <button onClick={about} tabIndex="1">About</button>
       </header>
       <main>
         <form action="submit" onSubmit={handleClick}>
-          <h2>Anonymous Movie Review Form</h2>
+          <h2>Anonymous Film Review Form</h2>
           <label htmlFor="reviewTitle">Film Name: </label>
           <input required type="text" id="reviewTitle" onChange={(event) => setTitle(event.target.value)} value={title}></input>
 
@@ -131,7 +125,7 @@ function App() {
         </form>
 
       <div className="reviewBoard">
-        <h2>Movie Review Board</h2>
+        <h2>Reviews</h2>
         <ul className="listFlex">
           {movies.map((movie) => {
             return (
@@ -148,7 +142,7 @@ function App() {
           })}
         </ul>
       </div>
-      <p onClick={returnToTop} className="return">Return to top</p>
+      <p onClick={returnToTop} className="return" tabIndex="0">Return to top</p>
       </main>
       <footer>
         <p>Created by Paul Szadurski at <a href="https://junocollege.com/">Juno College</a></p>

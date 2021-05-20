@@ -104,8 +104,6 @@ h2 {
   font-size: 40px;
 }
 
-
-
 form button {
   max-width: 160px;
   margin: 10px auto;
@@ -117,7 +115,8 @@ form button {
   transition: background-color 0.5s ease;
 }
 
-form button:hover {
+form button:hover,
+form button:focus {
   background-color: rgb(101, 101, 121);
   cursor: pointer;
 }
@@ -144,7 +143,8 @@ li button {
   border: solid 2px black;
 }
 
-li button:hover {
+li button:hover,
+li button:focus {
   background-color: crimson;
   cursor: pointer;
 }
@@ -156,33 +156,7 @@ h1 {
 }
 
 /* about */
-.about {
-  display: inline-block;
-  position: fixed;
-  z-index: 1;
-  width: 60%;
-  right: 20%;
-  top: -100vh;
-  background: black;
-  text-align: center;
-  height: 100vh;
-  transition: all 0.3s;
-}
-
-.about p {
-  text-align: start;
-  padding-left: 20px;
-}
-
-input[type=checkbox]:checked + .about {
-  top: 0;
-}
-
-input[type=checkbox] {
-  display: none;
-}
-
-nav label {
+header button {
   background-color: black;
   padding: 20px;
   cursor: pointer;
@@ -191,10 +165,13 @@ nav label {
   top: 0;
   right: 5%;
   font-weight: bold;
+  color: white;
   border: solid 1px gold;
+  font-family: 'Montserrat', sans-serif;
 }
 
-nav label:hover {
+header button:hover,
+header button:focus {
   background-color: rgb(126, 108, 7);
   transition: background-color 0.5s ease;
 }
@@ -208,7 +185,8 @@ nav label:hover {
   border: solid 1px gold;
 }
 
-.return:hover {
+.return:hover,
+.return:focus {
   cursor: pointer;
   background-color: rgb(126, 108, 7);
   transition: background-color 0.5s ease;
