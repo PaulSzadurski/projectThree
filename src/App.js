@@ -84,6 +84,43 @@ function App() {
   })
   }
 
+  // tmdb api stuff
+  const movieDetails = (movieName) => {
+    const movieURL = new URL('https://api.themoviedb.org/3/search/movie?');
+
+    movieURL.search = new URLSearchParams({
+      api_key: '5565cbc916e20b748a73dc18cc9997b6',
+      query: movieName
+    })
+    fetch(movieURL)
+      .then((response) => {
+        return response.json();
+      })
+      .then((jsonResponse) => {
+        console.log(movieURL);
+        const movieResult = jsonResponse.results[0];
+        if (!movieResult) {
+          Swal.fire({
+            title: 'Error',
+            text: 'Movie description not found',
+            background: '#fc9d9d',
+            confirmButtonText: 'Return',
+            confirmButtonColor: '#424242'
+          })
+        }
+        else {
+          Swal.fire({
+            title: movieResult.title,
+            text: movieResult.overview,
+            imageUrl: `https://image.tmdb.org/t/p/w200/${movieResult.poster_path}`,
+            background: '#fceaae',
+            confirmButtonText: 'Return',
+            confirmButtonColor: '#424242'
+          })
+        }
+      })
+  }
+
   // html content
   return (
     <div className="wrapper">
@@ -115,7 +152,10 @@ function App() {
                 <li key={movie.key}>
                   <div>
                     <h3>{movie.name.title}</h3>
+                    <div>
+                    <button onClick={() => movieDetails(movie.name.title)}>View Details</button>
                     <button onClick={() => removeReview(movie.key)}>Remove</button>
+                    </div>
                   </div>
                   <p className="text">{movie.name.text}</p>
                   <p className="score">{movie.name.score}/10</p>

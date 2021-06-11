@@ -150,9 +150,9 @@ form button {
   max-width: 8rem;
   margin: 0.5rem auto;
   font-size: 1.25rem;
-  border-radius: 30%;
   background-color: rgb(44, 43, 43);
   border: solid black;
+  padding: 0.5rem
 }
 
 form button:hover,
@@ -234,7 +234,7 @@ footer {
 }
 
 /* media queries */
-@media (max-width: 790px) {
+@media (max-width: 920px) {
   .listFlex li {
     width: 100%;
   }
