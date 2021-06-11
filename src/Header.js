@@ -7,7 +7,7 @@ const Header = () => {
     // SweetAlert2 popup
     Swal.fire({
       title: 'About Anonymovies',
-      text: 'Hello there! Welcome to my anonymous movie review board made using react.js and firebase! The app is fairly straightforward, go to the review form and write up a review of a film you love (or hate), following the parameters. Once you submit the review, it will be sent to a firebase database and then pushed onto the review board you see beneath the form.',
+      text: `Hello there! Welcome to my anonymous movie review board made using react.js and firebase! The app is fairly straightforward, go to the review form and write up a review of a film you love (or hate), following the parameters. Once you submit the review, it will be sent to a firebase database and then pushed onto the review board you see beneath the form. If you're interested in more details about the movie, click the "view details" button on the review to see more information provided by The Movie Database's API.`,
       background: '#fceaae',
       iconColor: 'black',
       confirmButtonColor: '#424242'
