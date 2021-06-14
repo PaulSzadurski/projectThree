@@ -152,13 +152,13 @@ function App() {
                 <li key={movie.key}>
                   <div>
                     <h3>{movie.name.title}</h3>
-                    <div>
-                    <button onClick={() => movieDetails(movie.name.title)}>View Details</button>
-                    <button onClick={() => removeReview(movie.key)}>Remove</button>
-                    </div>
+                    <p className="score">{movie.name.score}/10</p>
                   </div>
                   <p className="text">{movie.name.text}</p>
-                  <p className="score">{movie.name.score}/10</p>
+                  <div className="buttonContainer">
+                    <button onClick={() => movieDetails(movie.name.title)}>View Details</button>
+                    <button onClick={() => removeReview(movie.key)}>Remove</button>
+                  </div>
                 </li>
               )
             })}
